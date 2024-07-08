@@ -1,0 +1,155 @@
+<!--This is HTML file for HOME FRAME-->
+{%extends 'header.html'%}
+
+{%block title%}
+    <title>Home - Bioscoop</title>
+{%endblock%}
+
+{%block css%}
+    <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+{%endblock%}
+
+{%block content%}
+
+    <!--Begin of first section: big slide poster-->
+    <div class="container">
+      <!-- Slider main container -->
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          {% for no in range(4) %}
+          <div class="swiper-slide">
+            <div class="title-on-poster">
+              <p>Today's Recommendation</p>
+              <a id="big-title" href="/movie/{{sliding[no][0]}}">{{sliding[no][1]}} </a>
+              <div class="top-comment">
+                <p>"{{top_comment[no][5]}}" <span style="color: #ffc632;">- {{top_comment[no][3]}}</span></p>
+              </div>
+              <form action="/" method="POST">
+              <div class="buttons">
+                {% if is_admin == 0 %}
+                <button class="add" name="movie_id" value={{sliding[no][0]}}>
+                  <img class="icon" src="./static/images/icons/watchlist.png"></img>
+                  Add to Watchlist
+                </button>
+                {% endif %}
+                <button class="more-info" name="more_info" value={{sliding[no][0]}}>
+                  <i class="fa-sharp fa-solid fa-circle-info"></i><a href="/movie/{{sliding[no][0]}}"></a>
+                  More Info
+                </button>
+              </div>
+              </form>
+            </div>
+            <img src=".././static/images/home/{{sliding[no][10]}}">  
+          </div>
+          {% endfor %}
+        </div>
+        
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+      </div>
+    </div>
+    <!--/ first section-->
+
+    <!--Begin of second section: most popular-->
+    <div class="most-popular">
+      <h1 class="title">MOST POPULAR</h1>
+      <hr style="position:relative; background-color: #fff; border:none; width: 80vw; left:50%; transform:translate(-50%); height:3px;">
+      <div class="most-popular-poster" style="display:flex; align-items: center;">
+        <div class="most-popular-img">
+          <a href="/movie/{{popular[0]}}"><img src="./static/images/poster/{{popular[10]}}" alt="movie1"></a><!--will change based on database!-->
+          {% if is_admin == 0 %}
+          <form action="/" method="POST">
+          <div class="overlay">
+            <button name="movie_id" value={{popular[0]}}> <!--button to add watchlist-->
+              <img src="./static/images/icons/watchlist.png"></img>
+              Add to watchlist
+            </button>
+          </div>
+          </form>
+          {% endif %}
+        </div>
+        <div class="synopsis">
+          <a href="/movie/{{popular[0]}}"><h1 style="font-weight: lighter;">{{popular[1]}} </h1></a> <!--will change based on database!-->
+          <h2>
+            {% if popular[7]//60 > 0 %} 
+            {{popular[7]//60}}h
+            {% endif %} 
+            {{popular[7]%60}}min
+          </h2> <!--will change based on database!-->
+          <h3>{{popular[2]}} </h3> <!--will change based on database!-->
+          <h4>{{popular[3]}}</h4>
+        </div>
+        <div class="rate">
+          <p>{{popular[8]}} </p> <!--will change based on database!-->
+          <i class="fa-solid fa-star"></i>
+        </div>
+      </div>
+    </div>
+    <!--/ second section-->
+
+<!--Begin of third section: four recommendations-->
+<div class="must-watch">
+  <h1>Must Watch</h1>
+
+  <div class="must-watch-movies">
+    {% for movie in result %}
+    <div class="movie-and-title">
+
+      <div class="movie">
+        <a href="/movie/{{movie[0]}}"><img src="./static/images/poster/{{movie[10]}}" alt="movie1"></a>
+        {% if is_admin == 0 %}
+        <form action="/" method="POST">
+        <div class="overlay">
+          <button name="movie_id" value="{{movie[0]}}"> <!--button to add watchlist-->
+            <img src="./static/images/icons/watchlist.png"></img>
+            Add to watchlist
+          </button>
+        </div> 
+        </form>
+        {% endif %}
+      </div>
+
+      <a href="/movie/{{movie[0]}}" class="title">{{movie[1]}} </a> <!--will change based on database!-->
+      <div class="must-watch-rate">
+        <p>{{movie[8]}} </p><!--will change based on database!-->
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+  
+</div>
+<!--/ third section-->
+
+<script type="text/javascript" src="{{url_for('static', filename='home.js')}}"></script>
+
+<!--script for image slider-->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.swiper', {
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    // Optional parameters
+    loop: true,
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+{%endblock%}

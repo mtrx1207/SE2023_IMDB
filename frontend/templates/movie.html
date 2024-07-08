@@ -1,0 +1,268 @@
+<!--This is HTML file for MOVIE INFO FRAME-->
+{%extends 'header.html'%}
+
+{%block title%}
+    <title>{{movie[1]}} - Bioscoop</title>
+{%endblock%}
+
+{%block css%}
+    <link rel="stylesheet" href="{{url_for('static', filename='movie.css')}}">
+{%endblock%}
+
+{%block content%}
+    <div class="movie-info">
+        <div class="movie-info-heading">
+            <p class="title">{{movie[1]}}</p>
+            <div class="year-duration">
+                <p>{{movie[6]}}</p>
+                <p style="position: relative; font-size: 1rem; transform: translateY(-20%);">.</p>
+                <p>
+                    {% if movie[7]//60 > 0 %} 
+                    {{movie[7]//60}}h
+                    {% endif %} 
+                    {{movie[7]%60}}min
+                </p>
+            </div>
+        </div>
+        <div class="movie-info-content">
+            <img src = ".././static/images/poster/{{movie[10]}}">
+            <div class="text-info">
+                <p>Genre: <span>{{movie[2]}}</span></p>
+                <br>
+                <p>Stars: <span>{{movie[5]}}</span></p>
+                <br>
+                <p>Director: <span>{{movie[4]}}</span></p>
+                <br>
+                <p class="synopsis">{{movie[3]}}</p>
+            </div>
+        </div>
+        <div class="rate-and-watchlist">
+            <div class="rate">
+                {{movie[8]}}
+                <i class="fa-solid fa-star"></i>
+            </div>
+            
+            {% if is_admin == 0 %}
+            <form action="/movie/{{movie[0]}}" method="POST">
+                <button name="watchlist" value="{{movie[0]}}">
+                    <img src=".././static/images/icons/watchlist.png" alt="plus"></img>
+                </button>
+                <button name="watched" value="{{movie[0]}}">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="statistic">
+        <p class="heading">Statistics</p>
+        <br>
+        
+        <!--Begin of statistic bar-->
+        <div class="statistic-visual">
+
+            <div class="statistic-rate-quant">
+                <p class="rate">{{movie[8]}}</p>
+                <p class="quant">{{movie[9]}}</p>
+            </div>
+
+            <div class="statistic-visual-container">
+
+                <div class="statistic-visual-container-box">
+
+                    <span class="rate-title">5</span>
+                    {% if movie[9] == 0 %}
+                        {% set five = 0 %}
+                    {% else %}
+                        {% set five = movie[11]/movie[9]*100 %}
+                    {% endif %}
+                    <div class="statistic-visual-box-bar">
+                        <span class="bar-percentage" style="width: 90%;" value="{{five}}">
+                            <span class="tooltip">{{five | round | int}}%</span>
+                        </span>
+                    </div>
+
+                </div>
+                <br>
+                <div class="statistic-visual-container-box">
+
+                    <span class="rate-title">4</span>
+                    {% if movie[9] == 0 %}
+                        {% set four = 0 %}
+                    {% else %}
+                        {% set four = movie[12]/movie[9]*100 %}
+                    {% endif %}
+                    <div class="statistic-visual-box-bar">
+                        <span class="bar-percentage" style="width: 60%;" value="{{four}}">
+                            <span class="tooltip">{{four | round | int}}%</span>
+                        </span>
+                    </div>
+
+                </div>
+                <br>
+                <div class="statistic-visual-container-box">
+
+                    <span class="rate-title">3</span>
+                    {% if movie[9] == 0 %}
+                        {% set three = 0 %}
+                    {% else %}
+                        {% set three = movie[13]/movie[9]*100 %}
+                    {% endif %}
+                    <div class="statistic-visual-box-bar">
+                        <span class="bar-percentage" style="width: 25%;" value="{{three}}">
+                            <span class="tooltip">{{three | round | int}}%</span>
+                        </span>
+                    </div>
+
+                </div>
+                <br>
+                <div class="statistic-visual-container-box">
+
+                    <span class="rate-title">2</span>
+                    {% if movie[9] == 0 %}
+                        {% set two = 0 %}
+                    {% else %}
+                        {% set two = movie[14]/movie[9]*100 %}
+                    {% endif %}
+                    <div class="statistic-visual-box-bar">
+                        <span class="bar-percentage" style="width: 5%;" value="{{two}}">
+                            <span class="tooltip">{{two | round | int}}%</span>
+                        </span>
+                    </div>
+
+                </div>
+                <br>
+                <div class="statistic-visual-container-box">
+
+                    <span class="rate-title">1</span>
+                    {% if movie[9] == 0 %}
+                        {% set one = 0 %}
+                    {% else %}
+                        {% set one = movie[15]/movie[9]*100 %}
+                    {% endif %}
+                    <div class="statistic-visual-box-bar">
+                        <span class="bar-percentage" style="width: 10%;" value="{{one}}">
+                            <span class="tooltip">{{one | round | int}}%</span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/ statistic bar-->
+    </div>
+    {% if is_admin == 0 %}
+    <div class="user-reviews">
+        <p class="heading">Reviews</p>
+
+        <!--Begin of input star rating-->
+        <form>
+            <div class="rating">
+                <input type="radio" name="rate" id="rating-opt5" data-idx="0" value=5 hidden>
+                <label for="rating-opt5"></label>
+
+                <input type="radio" name="rate" id="rating-opt4" data-idx="1" value=4 hidden>
+                <label for="rating-opt4"></label>
+
+                <input type="radio" name="rate" id="rating-opt3" data-idx="2" value=3 hidden>
+                <label for="rating-opt3"></label>
+
+                <input type="radio" name="rate" id="rating-opt2" data-idx="3" value=2 hidden>
+                <label for="rating-opt2"></label>
+
+                <input type="radio" name="rate" id="rating-opt1" data-idx="4" value=1 hidden>
+                <label for="rating-opt1"></label>
+            </div>
+        </form>
+        <!--/input star rating-->
+
+        <div class="comment-section">
+            <form>
+                <textarea id="comment-box" name="comment-box" type="text" placeholder="Add your comment"></textarea>
+                <div class="comment-button">
+                    <input class="submit" name="submit" type="submit" for="comment-box" value="Submit">
+                    <button class="clear-button" type="button" onclick="myFunc()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <article
+            id="movie_id"
+            data-movieid="{{movie[0]}}">    
+        </article>
+
+    </div>
+    {% endif %}
+    <div class="comments-container">
+        <p class="heading">Comments</p>
+
+        <!--django loop implementation starts here-->
+        {% for review in reviews %}
+        <div class="comment">
+            <div class="username">
+                <p title="{{review[3]}}">@{{review[3]}}</p>
+                <div class="comment-rate">
+                    {% set rating = review[4] | int %}
+                    {% for i in range(rating) %}
+                    <i class="fa-solid fa-star" id="on"></i>
+                    {% endfor %}
+                    {% for i in range(5-rating) %}
+                    <i class="fa-solid fa-star" id="off"></i>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="comment-content">
+                <p>{{review[5]}}
+                </p>
+                {% set up = [] %}
+                {% set down = [] %}
+                {% for vote in votes %}
+                    {% if vote[2] == review[0] %}
+                        {% if vote[3] == 1 or vote[3] == 2 %}
+                            {% set temp = up.append(1) %}
+                            {% set temp = down.append(0) %}
+                        {% elif vote[3] == -1 or vote[3] == -2%}
+                            {% set temp = down.append(1) %}
+                            {% set temp = up.append(0) %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if not up and not down %}
+                    {% set temp = up.append(0) %}
+                    {% set temp = down.append(0) %}
+                {% endif %}
+                {% if is_admin == 0 %}
+                <div class="like-button">
+                    <button id="upvote" value=0 state={{up[0]}} onclick="Vote(this)" type="button" data-review_id="{{review[0]}}">
+                        <img src=".././static/images/icons/caret-nobg.png" style="transform: rotate(180deg);">
+                    </button>
+                    <p>{{review[6]}} </p>
+                    <button id="downvote" value=0 state={{down[0]}} onclick="Vote(this)" type="button" data-review_id="{{review[0]}}">
+                        <img src=".././static/images/icons/caret-nobg.png">
+                    </button>
+                </div>
+                {% else %}
+                <form action="/delete_comment/{{movie[0]}}" method="POST">
+                    <div class="overlay">
+                        <button class="remove" name="review_id" value="{{review}}">
+                        <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+            <span>
+                {% set date = review[7] | string %}
+                {{date[:10]}}
+            </span>
+            <hr style="margin:2vw 0;">
+        </div>
+        {% endfor %}
+
+        
+        
+        <div id="see-more">see more</div>
+    </div>
+    <script type="text/javascript" src="{{url_for('static', filename='movie.js')}}"></script>
+{%endblock%}

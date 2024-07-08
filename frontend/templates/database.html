@@ -1,0 +1,183 @@
+<!--This is HTML for Database Admin Page-->
+<!--No inherit header.html!-->
+<title>Database Administrator</title>
+<header>
+    <link rel="stylesheet" href="{{url_for('static', filename='database.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Bebas Neue">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Rubik">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</header>
+<body>
+    <a href="/" class="logo-home">
+      <img src=".././static/images/logo.png">
+    </a>
+    
+    <p class="heading">Database Administrator</p>
+    
+    
+    <div class="mode-button">
+        <button id="addbutton" name="action" value="add" onclick="toggleFunc(this)">Add New Movie</button>
+        <button id="deletebutton" name="action" value="delete" onclick="toggleFunc(this)">Delete Movie</button>
+    </div>
+
+    <!--start of ADD section-->
+    <form action="/add_movie" method="POST" enctype="multipart/form-data">
+        <div class="input-box" style="display: flex;">
+            <div class="text-input">
+                <div class="form-group">
+                    <label for="title">Title: </label>
+                    <input type="text" id="title" name="title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="genre">Genre: </label>
+                    <input type="text" id="genre" name="genre">
+                </div>
+                
+                <div class="form-group">
+                    <label for="director">Director: </label>
+                    <input type="text" id="director" name="director">
+                </div>
+                
+                <div class="form-group">
+                    <label for="actors">Actors: </label>
+                    <input type="text" id="actors" name="actors" placeholder="separate with comma e.g. Tom Holland, Chris Pratt, etc.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="year">Year: </label>
+                    <input type="text" id="year" name="year">
+                </div>
+                
+                <div class="form-group">
+                    <label for="duration">Duration: </label>
+                    <input type="text" id="duration" name="duration" placeholder="duration in minutes">
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rating: </label>
+                    <input type="text" id="rating" name="rating" placeholder="input initial rating">
+                </div>
+
+                <div class="form-group">
+                    <label for="votes">Votes: </label>
+                    <input type="text" id="votes" name="votes" value=10>
+                </div>
+
+                <div class="form-group">
+                    <label for="five_stars">Five Stars: </label>
+                    <input type="text" id="five_stars" name="five_stars" placeholder="input initial value">
+                </div>
+
+                <div class="form-group">
+                    <label for="four_stars">Four Stars: </label>
+                    <input type="text" id="four_stars" name="four_stars" placeholder="input initial value">
+                </div>
+
+                <div class="form-group">
+                    <label for="three_stars">Three Stars: </label>
+                    <input type="text" id="three_stars" name="three_stars" placeholder="input initial value">
+                </div>
+
+                <div class="form-group">
+                    <label for="two_stars">Two Stars: </label>
+                    <input type="text" id="two_stars" name="two_stars" placeholder="input initial value">
+                </div>
+
+                <div class="form-group">
+                    <label for="one_star">One Star: </label>
+                    <input type="text" id="one_star" name="one_star" placeholder="input initial value">
+                </div>
+    
+                <div class="form-group-synopsis">
+                    <label for="description">Synopsis: </label>
+                    <textarea type="text" id="description" name="description"></textarea>
+                </div>
+            </div>
+            
+            <div class="image-input">
+                <div class="image">
+                    <div class="dragger" id="1" ondragover="dragover(event, this)" ondragleave="dragleave(this)" ondrop="drop(event, this)">
+                        <div class="icon"><i class="fa-solid fa-image-portrait"></i></div>
+                        <h2 class="dragger-text" id="ver">Drag Image Ratio [3:4]</h2>
+                        <h3>OR</h3>
+                        <label class="browserFileBtn">
+                            <input type="file" name="poster" hidden id="fileSelectorInput" accept="image/jpeg, image/png, image/jpg" onchange="browseFileHandler(this)"/>
+                            Browse File
+                        </label>
+                    </div>
+                    <div id="filename"></div>
+                </div>
+                <br>
+                <div class="image">
+                    <div class="dragger" id="2" style="background-color:red;" ondragover="dragover(event, this)" ondragleave="dragleave(this)" ondrop="drop(event,this)" >
+                        <div class="icon"><i class="fa-solid fa-images"></i></div>
+                        <h2 class="dragger-text" id="hor">Drag Image Ratio [2:1]</h2>
+                        <h3>OR</h3>
+                        <label class="browserFileBtn">
+                            <input type="file" name="home" hidden id="fileSelectorInput" accept="image/jpeg, image/png, image/jpg" onchange="browseFileHandler(this)"/>
+                            Browse File
+                        </label>
+                    </div>
+                    <div id="filename"></div>
+                </div>
+                <br>
+                <div class="submit">
+                    <input type="submit" value="SUBMIT"/>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <!--end of ADD section-->
+
+    <!--start of DELETE section-->
+    <div class="delete-box" style="display:none;">
+        <div class="search-area">
+            <form action="/search_db", method="GET">
+                <input type="text" name="q" placeholder="Search for Movie">
+            </form>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
+        <div class="search-results">
+            <!--for loop here-->
+            {% for movie in movies %}
+            <div class="result">
+              <img src=".././static/images/poster/{{movie[10]}}" alt="movie1">
+      
+              <div class="movie-info">
+                <h1 class="title">{{movie[1]}}</h1>
+                <div class="year-duration">
+                  <p>{{movie[6]}} </p>
+                </div>
+                <p class="casting" style="padding-top:20px; font-size: 1.2vw;">{{movie[5]}} </p>
+              </div>
+      
+              <div class="deletebtn">
+                <button type="button" onclick="confirm()">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+
+            </div>
+            {% endfor %}
+            
+            <!--end for loop-->
+          </div>
+
+          <!--pop up window-->
+          <div class="pop-up" style="display:none;">
+            <p>Are you sure you want to delete?</p>
+            <br>
+            <div class="yn-button">
+                <button type="button">Yes</button>
+                <button type="button" onclick="cancel(this)">No</button>
+            </div>
+          </div>
+          <!--pop up window-->
+    </div>
+    <!--end of DELETE section-->
+
+    <script src="{{url_for('static', filename='database.js')}}"></script>
+</body>

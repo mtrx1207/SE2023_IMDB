@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    background-color: #000;
+    color: #fff;
+    font-size: 3vw;
+    font-family: "Rubik";
+}
+.watchlist-heading{  
+    width: fit-content;
+    margin: 3vw 10%;
+}
+.watchlist-heading .my-watchlist{
+    font-size: 1.5rem;
+    font-family: "Bebas Neue";
+    color: #ffc632;
+    letter-spacing: 3px;
+    font-weight:  lighter;
+}
+.watchlist-heading .results-num{
+    font-size: 0.5rem;
+    font-weight: lighter;
+    font-style: italic;
+}
+.watchlist-results{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,22%);
+    grid-gap: 4%;
+    align-items: center;
+    justify-content: space-between;
+    width: 80vw;
+    left: 50%;
+    margin-top: 3vw;
+    transform: translateX(-50%);
+}
+.watchlist-results .watchlist-movie{
+    position: relative;
+    height: fit-content;
+    margin-bottom: 3vw;
+}
+.watchlist-results .watchlist-movie img{
+    display:block;
+    width: 100%;
+    height: 27.5vw;
+}
+.watchlist-results .watchlist-movie .overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    transition: 0.5s;
+}
+.watchlist-results .watchlist-movie .overlay button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6rem;
+    font-weight: 100;
+    text-decoration: none;
+    border-radius: 0.5vw;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0.8vw 1vw;
+    transition: 0.2s;
+}
+.watchlist-results .watchlist-movie .overlay button i{
+    font-size: 0.9rem;
+}
+.watchlist-results .watchlist-movie a img:hover{
+    border-radius: 0px;
+    transition: 0.1s;
+}
+.watchlist-results .watchlist-movie:hover .overlay{
+    opacity: 1;
+    animation: left-in 0.3s ease;
+    animation-fill-mode: forward;
+}
+@keyframes left-in{
+    0%{left: -50%;}
+    100%{left: 0%;}
+}
+.watchlist-results .watchlist-movie .overlay button:hover{
+    background-color: red;
+}
+.watchlist-results .watchlist-movie .overlay:hover a{
+    color: #0cf3e4;
+    transition: 0.3s;
+}

@@ -1,0 +1,118 @@
+<!--This is base template for all website frames!-->
+<head>
+    <meta charset="UTF-8">
+    <meta name = "keywords" content="Bioscoop">
+    <meta name = "description" content="Bioscoop Website">
+    <meta name = "author" content="公泽尘，董云帆，吕汪洋，黄程骏，徐祥龙">
+    <meta name = "revised" content="6/8/2023">
+    {%block title%}
+    {% endblock %}
+    <meta http-equiv="refresh" content="100000"> <!--debug purpose-->
+    <link rel="stylesheet" href="{{url_for('static', filename='header.css')}}">
+    {%block css%}
+    {%endblock%}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Bebas Neue">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Rubik">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!--Begin of header-->
+    <header>
+        <img class="logo" src="{{url_for('static', filename='images/logo.png')}}" alt="our-logo-here"> <!--Logo-->
+        <!--Begin of navigation bar-->
+        <ul>
+        <li ><a class="navbar" href="/">Home</a></li><hr>
+        {% if is_admin == 1 %}
+        <li ><a class="navbar" href="/database">Database</a></li><hr>
+        {% else %}
+        <li ><a class="navbar" href="/watchlist">Watchlist</a></li><hr>
+        <li ><a class="navbar" href="/watched">Watched</a></li>
+        {% endif %}
+        </ul>
+        <!--/ navigation bar-->
+
+        <!--Begin of search bar-->
+        <div class="search-bar" >
+
+            <!--Begin of drop-down button-->
+            <div class="dropdown">
+                <button class="dropbtn" value="hide" onclick="dropButton(this)">
+                    <p>{{filter}}</p>
+                    <img class="caret" src="{{url_for('static', filename='images/icons/caret-down-solid.png')}}" alt="caret">
+                </button>
+                <ul class="dropdown-content" id="dropdown-content">
+                    <li onclick="selectOption(this)" class="All">All</li>
+                    <li onclick="selectOption(this)" class="Title">Title</li>
+                    <li onclick="selectOption(this)" class="Actors">Actors</li>
+                    <li onclick="selectOption(this)" class="Year">Year</li>
+                    <li onclick="selectOption(this)" class="Genre">Genre</li>
+                </ul>
+            </div>
+            <!--/ drop-down button-->
+
+            <!--Begin of input area-->
+            <form id="searchbar" action="/search" method="GET">
+                <input type="text" name="q" placeholder="Search Keywords">
+            </form>
+            <a class="search" onclick="submitSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>  
+            </a>
+            <!--/ input area-->
+        </div>
+
+        <!--Begin of login or logout button--> 
+        {% if user.is_authenticated %}
+        <div class="acc">
+            <i class="fa-solid fa-user"></i>
+            <p class="logout">{{user.username}}</p>
+            <a class="logouta" href="/logout">Logout</a>
+        </div>
+        
+        {% else %}
+        <a class="login" href="/login">Login</a>
+        {% endif %}
+        <!--/ login or logout button-->
+    </header> 
+    <!--/ header-->
+    
+    {%block content%}
+    {% endblock %}
+    <footer>
+        <img src=".././static/images/logo.png">
+        <div class="contact-logo">
+            <i class="fa-brands fa-tiktok"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <i class="fa-brands fa-facebook"></i>
+            
+            <div class="view-contact" id="tiktok">@bioscoop</div>
+            <div class="view-contact" id="instagram">@bioscoopofficial</div>
+            <div class="view-contact" id="twitter">@Bioscoop</div>
+            <div class="view-contact" id="youtube">Bioscoop</div>
+            <div class="view-contact" id="facebook">Bioscoop Official</div>
+        </div>
+        
+        <div class="copyright">
+            <i class="fa-regular fa-copyright"></i>
+            <p>2023 by SE_17 公泽尘，董云帆，吕汪洋，黄程骏，徐祥龙</p>
+        </p>
+    </footer>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="myAlert" role="alert">
+                <p>{{ message }}</p>
+                <button type="button" class="close" onclick="this.closest('div').style.display = 'none';">
+                    CLOSE
+                </button>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='header.js')}}"></script>
+</body>

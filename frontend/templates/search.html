@@ -1,0 +1,79 @@
+<!--This is HTML file for HOME FRAME-->
+{%extends 'header.html'%}
+{%block title%}
+    <title>{{query}} - Bioscoop</title>
+{%endblock%}
+
+{%block css%}
+    <link rel="stylesheet" href="{{url_for('static', filename='search.css')}}">
+{%endblock%}
+
+{%block content%}
+    <!--begin of search heading-->
+    <div class="search-heading">
+      <p>Search result for <span>"{{query}}"</span></p>
+      <form action="/search" method="POST">
+      <div class="sort-buttons">
+        <button name="newly_released" value="newly_released">Newly Released</button>
+        <button name="highest_rated" value="highest_rated">Highest Rated</button>
+        <button name="alphabetical" value="alphabetical">Alphabetical</button>
+      </div>
+      </form>
+      <hr style="position: relative; margin-top: 2.5vw; width: 82vw;">  
+    </div>
+    <!--/ search heading-->
+
+    <!--Begin of search results, use python django for loop-->
+    <div class="search-results">
+
+      {%for movie in result%}
+
+      <!--Show result for each data-->
+      <div class="result">
+        <a class="poster" href="/movie/{{movie[0]}}"><img src="./static/images/poster/{{movie[10]}}" alt="movie1"></a>
+
+        <!--Text info-->
+        <div class="movie-info">
+          <a class="title" href="/movie/{{movie[0]}}" style="padding: 0px;"><h1>{{movie[1]}}</h1></a>
+          <div class="year-duration">
+            <p>{{movie[6]}}</p>
+            <p style="font-size: 0.6rem; transform: translateY(-25%);">.</p>
+            <p>
+              {%if movie[7]//60 > 0%} 
+              {{movie[7]//60}}h
+              {%endif%} 
+              {{movie[7]%60}}min</p>
+          </div>
+          <p class="casting" style="font-size: 1.2vw;">{{movie[5]}}</p>
+        </div>
+        <!--/ Text info-->
+
+        <!--Add watchlist-watched buttton-->
+        {% if is_admin == 0 %}
+        <div class="check-add">
+          <form id="watched" action="/search" method="POST">
+          <button name="watched" value="{{movie[0]}}">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          </form>
+
+          <form id="watchlist" action="/search" method="POST">
+          <button style="margin-top: 25px;" name="watchlist" value="{{movie[0]}}">
+            <img src="./static/images/icons/watchlist.png" alt="plus">
+          </button>
+          </form>
+        </div>
+        {% endif %}
+        <!--/ add watchlist-watched button-->
+
+      </div>
+      <!--/ Show result for each data-->
+
+      <hr style="margin-top: 2.5vw; margin-bottom: 3vw; width: 82vw;">
+
+      {%endfor%}
+
+    </div>
+    <!--/ search results-->
+
+{%endblock%}

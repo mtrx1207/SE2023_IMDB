@@ -1,0 +1,316 @@
+header{
+    background-color: #000;
+    display: flex;
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    height: 63px;
+    max-width: 100%;
+    align-items: center;
+    z-index: 1000;
+    font-family: "Bebas Neue";
+    font-size: 2vw;
+}
+header .logo{
+    position: relative;
+    margin: 20px 10px 20px 40px;
+    width: 7.5vw;
+}
+header ul{
+    display: flex;
+    position: relative;
+    list-style-type: none;
+    width: 40vw;
+    justify-content: space-evenly;
+    align-items: center;
+}
+header hr{
+    margin: 0px;
+    height: 40px;
+}
+li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.navbar:hover{
+    color: #ffc632;
+}
+header .search-bar{
+    display: flex;
+    background-color: #fff;
+    position: relative;
+    width: 30.5vw;
+    height: 60%;
+    margin-left: 5vw;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+header form{
+    position: relative;
+    width: 100%;
+}
+header input{
+    background-color: #0000;
+    position: relative;    
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-family: "Rubik";
+    font-size: 1vw;
+    padding-left: 20px;
+}
+header .dropbtn{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    border-right: 2px solid #000000ba;
+    outline: none;
+    width: 6.5vw;
+    height: 100%;
+    outline: none;
+    font-family: "Bebas Neue";
+    font-size: 0.8em;
+    cursor: pointer;
+}
+.caret{
+    position: relative; 
+    width: 0.8vw;
+    left: 5px;
+}
+.search{
+    height: 100%;
+    padding: 0px 9px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+.search i{
+    font-size: 0.6rem;
+    color: #000;
+}
+.login{
+    color: #fff;
+    position: relative;
+    margin-left: 3vw;
+    text-decoration: none;
+    font-family: "Bebas Neue";
+    font-size: 2vw;
+    padding: 0 2vw;
+    height: 95%;
+    border-radius: 5px;
+    transition: 0.3s;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.logout{
+    cursor: context-menu;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    font-family: "Bebas Neue";
+    font-size: 2vw;
+    transition: 0.3s;
+    color: #fff;
+}
+.acc{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-left: 2vw;
+    height: 100%;
+    width: 15%;
+}
+.acc i{
+    color: #fff;
+}
+.logouta{
+    display:none;
+    position: absolute;
+    text-decoration: none;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    padding: 0.5vw 0.5vw;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    font-size: 2vw;
+    width: 12%;
+    text-align: center;
+}
+.login:hover{
+    background-color: #ffc532;
+    color: #000;
+}
+.logouta:hover{
+    display: block;
+}
+.logouta:hover ~ .logout{
+    display: none;
+}
+.logout:hover{
+    display: none;
+}
+.logout:hover ~ .logouta{
+    display: block;
+}
+.dropdown-content{
+    background-color: #f1f1f1;
+    display: none;
+    position: fixed;
+    top: 4.5vw;
+    width: 8vw;
+    border-radius: 5px;
+}
+.dropdown-content.active {
+    display: inline-block;
+}
+.dropdown-content.hide{
+    display: none;
+}
+.dropdown-content li{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-family: "Rubik";
+    font-size: 0.6em;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dropdown:hover .dropbtn{
+    background-color: #ddd;
+}
+.dropdown-content li:hover{
+    background-color: #ddd;
+}
+.search:hover{
+    background-color: #ddd;
+}
+.myAlert{
+    background-color: #ffc632;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: 7vw;
+    border-radius: 0.5vw;
+}
+footer{
+    background-color: #0c0c0c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw 2vw;
+}
+footer img{
+    width: 10%;
+}
+footer .contact-logo{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 2vw 0;
+}
+footer .contact-logo i{
+    color: #fff;
+    font-size: 2vw;
+}
+footer .view-contact{
+    color: #fff;
+    font-size: 2vw;
+    width: 100%;
+    text-align: center;
+    display: none;
+    opacity: 0;
+    transition: 0.5s;
+    margin-top: 2vw;
+}
+.fa-tiktok:hover ~ #tiktok{
+    display: block;
+    opacity: 1;
+}
+.fa-instagram:hover ~ #instagram{
+    display: block;
+    opacity: 1;
+}
+.fa-twitter:hover ~ #twitter{
+    display: block;
+    opacity: 1;
+}
+.fa-youtube:hover ~ #youtube{
+    display: block;
+    opacity: 1;
+}
+.fa-facebook:hover ~ #facebook{
+    display: block;
+    opacity: 1;
+}
+footer .copyright{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    font-weight: lighter;
+}
+footer .copyright i{
+    color: #ffffff8f;
+    font-size: 1.25vw;
+}
+footer .copyright p{
+    position: relative;
+    font-family: "Rubik";
+    font-size: 1.25vw;
+    text-align: center;
+    color: #ffffff8f;
+}
+.myAlert{
+    background-color: #ffc632;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    padding: 1.5vw 1vw;
+    border-radius: 0.5vw;
+    font-size: 0.5rem;
+    color: #000;
+}
+.myAlert p{
+    position: relative;
+    text-align: center;
+}
+.myAlert button{
+    position: relative;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 2vw;
+}

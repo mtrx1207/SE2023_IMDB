@@ -1,0 +1,39 @@
+<!--This is HTML file for WATCHED FRAME-->
+{%extends 'header.html'%}
+
+{%block title%}
+    <title>My Watchlist - Bioscoop</title>
+{%endblock%}
+
+{%block css%}
+    <link rel="stylesheet" href="{{url_for('static', filename='watched.css')}}">
+{%endblock%}
+
+{%block content%}
+  <!--Begin of heading-->
+  <div class="watchlist-heading">
+      <p class="my-watchlist">Watched Movies</p>
+      <p class="results-num">{{ result|length }} results</p>
+  </div>
+  <hr style="position:relative; width: 80vw; left:50%; transform:translate(-50%);"></hr>
+  <!--/ heading-->
+
+  <!--Begin of watchlist results-->
+  <div class="watchlist-results">
+      {% for movie in result %}
+      <div class="watchlist-movie">
+          <a href="/movie/{{movie[0]}}">
+              <img src="./static/images/poster/{{movie[1]}}" alt="movie">
+          </a>
+          <form action="/watched" method="POST">
+          <div class="overlay">
+              <button class="remove" name="movie_id" value="{{movie[0]}}">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+          </div>
+          </form>
+      </div>
+      {% endfor %}
+  </div>
+  <!--/ watchlist results-->
+{%endblock%}

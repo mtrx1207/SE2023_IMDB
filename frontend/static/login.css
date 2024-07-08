@@ -1,0 +1,132 @@
+/*my screen size is 1280 x 720*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: #000000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: "Rubik";
+}
+.login-block{
+    background-color: rgba(216,216,216,0.5);
+    height: 38vw;
+    width: 43vw;
+    position: relative;
+    border-radius: 1vw;
+}
+.logo{
+    position: relative;
+    transition: 1s;
+    animation: fadeIn 1.5s;
+}
+@keyframes fadeIn{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.login-title{
+    color: #fff;
+    font-family: "Bebas Neue";
+    font-weight: lighter;
+    font-size: 5vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s;
+    margin-top: 2vw;
+    letter-spacing: 1px;
+}
+form{
+    position: absolute;
+    left: 35%;
+    transform: translateX(-50%);
+    margin-top: 13vw;
+}
+.input-container{
+    position: relative;
+    left: 8vw;
+    width: 40vw;    
+    margin-bottom: 3vw;
+    display: flex;
+}
+input{
+    height: 4vw;
+    width: 80%;
+    transform: translateY(-50%);
+    padding-left: 1vw;
+    font-family: "Rubik";
+    font-size: 1.5vw;
+    border: 1px solid #1d2b3a;
+    border-radius: 0.8vw;
+    outline: none;
+    transition: 0.2s;
+}
+input:focus{
+    border: 2px solid #ffc632;
+}
+.icon{
+    height: 30px;
+    width: 26.25px;
+    margin-right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.login-button{
+    background-color: rgb(236, 185, 34);
+    font-size: 30px;
+    font-family: "Rubik";
+    font-weight: bold;
+    position: absolute;
+    height: 10vh;
+    width: 22vw;
+    border: none;
+    border-radius: 2vw;
+    outline: none;
+    left: 40%;
+}
+.login-button:hover{
+    background-color: rgb(255, 198, 50);
+}
+.signup:link, .signup:visited{
+    color: #000000;
+    font-family: "Rubik";
+    font-size: 1.2vw;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.2s;
+}
+.signup:hover{
+    color: rgb(255, 198, 50);
+    font-size: 1.35vw;
+}
+.myAlert{
+    background-color: #ffc632;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: 7vw;
+    border-radius: 0.5vw;
+}
+.myAlert p{
+    position: relative;
+    text-align: center;
+}
+.myAlert button{
+    position: relative;
+    border: none;
+    background: none;
+}

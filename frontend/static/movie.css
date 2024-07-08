@@ -1,0 +1,397 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 3vw;
+    font-family: "Rubik";
+    color: #fff;
+    background-color: #000;
+}
+.movie-info, .statistic, .user-reviews, .comments-container{
+    margin: 3vw 10%;
+}
+.movie-info-heading{
+    width: 80%;
+}
+.movie-info-heading .title{
+    font-family: "Bebas Neue";
+    font-size: 2rem;
+    color: #ffc632;
+    letter-spacing: 2px;
+}
+.movie-info-heading .year-duration{
+    font-size: 0.6rem;
+    font-weight: lighter;
+    width: 15vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(-50%);
+}
+.movie-info-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.movie-info-content img{
+    width: 20%;
+}
+.movie-info-content .text-info{
+    font-size: 0.6rem;
+    width: 75%;
+    height: fit-content;
+}
+.movie-info-content .text-info p{
+    font-family: "Bebas Neue";
+    font-size: 0.6rem;
+    color: #ffc632;
+    letter-spacing: 1px;
+}
+.movie-info-content .text-info p span{
+    font-family: "Rubik";
+    color: #fff;
+    font-size: 0.55rem;
+    padding-left: 0.5vw;
+}
+.movie-info-content .text-info .synopsis{
+    font-family: "Rubik";
+    font-size: 0.5rem;
+    font-style: italic;
+    color: #a5a5a5;
+    text-align:justify;
+    line-height: 1.5;
+}
+.rate-and-watchlist{
+    display: flex;
+    flex-direction: column;
+}
+.rate-and-watchlist .rate{
+    position: absolute;
+    width: 12.5%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    left: 75%;
+    top: 10vw;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.rate-and-watchlist .rate i{
+    font-size: 1rem;
+    color: #ffc632;
+}
+.rate-and-watchlist form{
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 10%;
+    left: 76.2%;
+    top: 15vw;
+    padding: 0.5% 0%;
+}
+.rate-and-watchlist form button{
+    background-color: #cbc9c9e1;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5vw;
+    padding: 0.5vw 0.5vw;
+}
+.rate-and-watchlist form img{
+    width: 2vw;
+    height: auto;
+}
+.rate-and-watchlist form i{
+    border: none;
+    font-size: 0.6rem;
+    background-color: #0000;
+}
+.rate-and-watchlist form button:hover{
+    background-color: #cbcbcb;
+}
+.heading{
+    font-family: "Bebas Neue";
+    color: #ffc632;
+    letter-spacing: 1px;
+    margin: 1.5vw 0;
+}
+.statistic-visual{
+    display: flex;
+    align-items: center;
+    margin-left: 2vw;
+}
+.statistic-rate-quant{
+    width: fit-content;
+    padding-right: 2vw;
+    text-align: center;
+}
+.statistic-rate-quant .rate{
+    font-family: "Bebas Neue";
+    color: #ffc632;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+.statistic-rate-quant .quant{
+    font-size: 0.4rem;
+    color: #a5a5a5;
+}
+.statistic-visual-container{
+    width: 100%;
+    height: fit-content;
+    margin-left: 5vw;
+}
+.statistic-visual-container .statistic-visual-container-box{
+    width: 60%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.statistic-visual-container .rate-title{
+    display: block;
+    font-size: 0.6rem;
+    font-weight: lighter;
+}
+.statistic-visual-container .statistic-visual-box-bar{
+    background-color: #737171;
+    width: 90%;
+    height: 1.2vw;
+    border-radius: 2vw;
+    margin-left: 2vw;
+}
+.statistic-visual-box-bar .bar-percentage{
+    position: relative;
+    display: block;
+    height: 100%;
+    border-radius: 2vw;
+    background-color: #ffc632;
+    animation: expand 1s ease-in-out;
+}
+.bar-percentage .tooltip{
+    position: absolute;
+    right: -1vw;
+    top: -3vw;
+    font-size: 1vw;
+    font-weight: 500;
+    color: #000;
+    background-color: #0cf3e4;
+    padding: 0.5vw 0.5vw;
+    border-radius: 0.2vw;
+    opacity: 0;
+    transition: 0.3s;
+}
+@keyframes expand {
+    0%{width: 0; opacity: 0;}
+    100%{opacity: 1;}
+}
+.tooltip::before{
+    content: '';
+    background-color: #0cf3e4;
+    position: absolute;
+    left: 50%;
+    top: 1.75vw;
+    height: 0.8vw;
+    width: 0.8vw;
+    transform: translateX(-50%) rotate(45deg);
+}
+.statistic-visual-box-bar:hover .tooltip{
+    opacity: 1;
+}
+.statistic br{
+    line-height:1vw;
+}
+.user-reviews .rating{
+    display: inline-block;
+    position: relative;
+    color: gray;
+    left: 50%;
+    transform: translateX(-50%);
+    height: fit-content;
+}
+.rating input{
+    display: none;
+}
+.user-reviews .rating label{
+    float: right;
+    padding: 0;
+    cursor: pointer;
+}
+label::before{
+    content: "\2606";
+    font-size: 5vw;
+    color: #fff;
+    display: inline-block;
+    transition: 0.3s;
+    padding-bottom: 1vw;
+}
+input:checked ~ label:before{
+    content: "\2605";
+    color: #ffc632;
+    filter: drop-shadow(0 0 4px);
+    transform: rotate(.2turn);
+    transition-delay: calc(2 * attr(data-idx integer));
+}
+.user-reviews .comment-section{
+    border: 0px solid #fff;
+}
+.user-reviews .comment-section textarea{
+    width: 100%;
+    height: 10vw;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    padding: 1vw 2vw;
+    font-size: 50%;
+    border-radius: 0.5vw;
+    font-family: "Rubik";
+}
+.user-reviews .comment-section .comment-button{
+    float: right;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1.2vw 0;
+    width: 20%;
+}
+.user-reviews .comment-section .comment-button input{
+    font-family: "Bebas Neue";
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    width: 40%;
+    height: 2.5vw;
+    cursor: pointer;
+    background-color: #ffc632;
+    border: none;
+    border-radius: 0.5vw;
+}
+.user-reviews .comment-section .comment-button button{
+    font-family: "Bebas Neue";
+    font-size: 0.55rem;
+    color: #fff;
+    letter-spacing: 1px;
+    width: 40%;
+    height: 2.5vw;
+    cursor: pointer;
+    background-color: #0000;
+    border: none;
+}
+.user-reviews .comment-section .comment-button input:hover{
+    background-color: #0cf3e4;
+}
+.user-reviews .comment-section .comment-button button:hover{
+    color:#0cf3e4;
+}
+.comments-container .comment{
+    display: none;
+}
+.comments-container .comment:nth-child(2),
+.comments-container .comment:nth-child(3),
+.comments-container .comment:nth-child(4){
+    display: block;
+}
+.comments-container .comment .username{
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+}
+.comments-container .comment .username p{
+    width: 45%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 0.5rem;
+}
+.comments-container .comment span{
+    font-size: 0.4rem;
+    color: #8e8e8e;
+    font-weight: lighter;
+    letter-spacing: 2px;
+}
+.comments-container .comment .username .comment-rate{
+    font-size: 0.5rem;
+    display: flex;
+}
+.comments-container .comment .username .comment-rate #on{
+    color: #ffc632;
+}
+.comments-container .comment .username .comment-rate #off{
+    color: gray;
+}
+.comments-container .comment .comment-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw 0;
+}
+.comments-container .comment .comment-content p{
+    font-size: 0.5rem;
+    line-height: 2.5vw;
+    letter-spacing: 1 px;
+    font-weight: lighter;
+    height: fit-content;
+    width: 90%;
+    text-align: justify;
+}
+.comments-container .comment .comment-content .like-button{
+    position: relative;
+    width: 5%;
+    height: fit-content;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:center;
+}
+.comments-container .comment .comment-content .like-button p{
+    position: relative;
+    margin: 1.5vw 0px;
+    width: 100%;
+    text-align: center;
+}
+.comments-container .comment .comment-content .like-button button{
+    width: fit-content;
+    padding: 0;
+    cursor: pointer;
+    height: fit-content;
+    background-color: #fff;
+    border: none;
+}
+.comments-container .comment .comment-content .like-button img{
+    width: 2.5vw;
+    height: fit-content;
+}
+.comments-container .comment .comment-content .like-button button:hover{
+    background-color: #ffc632;
+}
+.comments-container #see-more{
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.6rem;
+    font-style: italic;
+    font-weight: lighter;
+    cursor: pointer;
+    width: fit-content;
+}
+.comments-container #see-more:hover{
+    color: #ffc632;
+}
+.remove{
+    cursor: pointer;
+    padding: 0.5vw 0.5vw;
+    background-color: #fff;
+    border: none;
+    border-radius: 0.2vw;
+}
+.remove i{
+    font-size: 1rem;
+}
+.remove:hover{
+    background-color: #ffc632;
+}
